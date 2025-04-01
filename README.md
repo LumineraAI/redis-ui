@@ -1,93 +1,123 @@
-# Redis Visualizer
+# Redis Visualizer: Modern UI Dashboard for Redis Database Management
 
-A beautiful UI for visualizing Redis data with a modern React frontend and Node.js backend.
+[![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/)
+[![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Material UI](https://img.shields.io/badge/Material_UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white)](https://mui.com/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-![Redis Visualizer](https://redis.io/images/redis-white.png)
+A powerful, intuitive, and beautiful web interface for Redis database management, monitoring, and data visualization. Built with React, Material UI, Node.js, and Express.
 
-## Features
+![Redis Visualizer Dashboard](https://redis.io/images/redis-white.png)
 
-- **Dashboard**: Overview of Redis server stats and recent keys
-- **Key Explorer**: Browse and search through all Redis keys
-- **Data Visualization**: Visualize different Redis data types (strings, lists, sets, sorted sets, hashes)
-- **Server Stats**: Detailed Redis server statistics with charts
+## ✨ Key Features
 
-## Prerequisites
+- **Real-time Dashboard**: Comprehensive overview of Redis server performance metrics, memory usage, and recent keys
+- **Interactive Key Explorer**: Efficiently browse, search, and filter through all Redis keys with pagination support
+- **Advanced Data Visualization**: Rich visualization for all Redis data types:
+  - Strings (with JSON detection and formatting)
+  - Lists
+  - Sets
+  - Sorted Sets (ZSets)
+  - Hashes
+- **Detailed Performance Monitoring**: Server statistics with interactive charts and graphs
+- **Modern, Responsive UI**: Clean interface that works on desktop and mobile devices
 
-- Node.js (v14+)
-- npm or yarn
-- Redis server (local or remote)
+## 📋 Prerequisites
 
-## Installation
+- **Node.js**: v14.0.0 or higher
+- **npm** or **yarn**: Latest stable version recommended
+- **Redis server**: Running instance (local or remote)
+- **Web browser**: Chrome, Firefox, Safari, or Edge (latest versions)
 
-1. Clone the repository:
+## 🚀 Quick Installation
+
+1. **Clone the repository**:
 ```bash
 git clone https://github.com/yourusername/redis-visualizer.git
 cd redis-visualizer
 ```
 
-2. Install server dependencies:
+2. **Install dependencies** (server and client):
 ```bash
+# Install server dependencies
 npm install
-```
 
-3. Install client dependencies:
-```bash
+# Install client dependencies
 npm run install-client
 ```
 
-   > **Note:** If you encounter dependency conflicts, you can use one of these approaches:
-   > ```bash
-   > # Option 1: Use legacy-peer-deps flag
-   > cd client && npm install --legacy-peer-deps
-   >
-   > # Option 2: Use force flag with legacy-peer-deps
-   > cd client && npm install --legacy-peer-deps --force
-   >
-   > # Option 3: Clean install (recommended if you have issues)
-   > cd client && rm -rf node_modules package-lock.json && npm install --legacy-peer-deps
-   > ```
-   >
-   > Or use the provided script:
-   > ```bash
-   > npm run reinstall-client
-   > ```
-
-4. Create a `.env` file in the root directory with your Redis connection details:
+3. **Configure Redis connection**:
+Create a `.env` file in the root directory:
 ```
 REDIS_URL=redis://localhost:6379
-PORT=5000
+PORT=5001
 ```
 
-## Running the Application
-
-### Development Mode
-
-Run both the server and client in development mode:
-
+4. **Start the application**:
 ```bash
 npm run dev
 ```
 
-Or run them separately:
+## 🔧 Detailed Installation Guide
+
+### Handling Dependency Issues
+
+If you encounter dependency conflicts during installation, try one of these solutions:
 
 ```bash
-# Run the server
-npm run server
+# Solution 1: Use legacy-peer-deps flag
+cd client && npm install --legacy-peer-deps
 
-# Run the client
-npm run client
+# Solution 2: Use force flag with legacy-peer-deps
+cd client && npm install --legacy-peer-deps --force
+
+# Solution 3: Clean install (recommended for persistent issues)
+cd client && rm -rf node_modules package-lock.json && npm install --legacy-peer-deps
 ```
 
-### Production Mode
+Or use our provided script:
+```bash
+npm run reinstall-client
+```
 
-Build the client and start the server:
+### Docker Installation (Alternative)
+
+For containerized deployment:
 
 ```bash
+# Build and run with Docker Compose
+docker-compose up -d
+
+# Or build and run manually
+docker build -t redis-visualizer .
+docker run -p 5001:5001 -e REDIS_URL=redis://your-redis-host:6379 redis-visualizer
+```
+
+## 🖥️ Running the Application
+
+### Development Environment
+
+```bash
+# Run both server and client concurrently (recommended)
+npm run dev
+
+# Or run them separately
+npm run server  # Starts the Node.js backend with hot-reloading
+npm run client  # Starts the React development server
+```
+
+### Production Deployment
+
+```bash
+# Build optimized client assets
 npm run build
+
+# Start production server
 npm start
 ```
 
-## Usage
+## 📊 Features & Usage Guide
 
 Once the application is running, open your browser and navigate to:
 
@@ -95,37 +125,129 @@ Once the application is running, open your browser and navigate to:
 http://localhost:3000
 ```
 
-### Dashboard
+### 1. Dashboard
 
-The dashboard provides an overview of your Redis instance, including:
-- Total number of keys
-- Memory usage
-- Connected clients
-- Uptime
-- Recent keys
-- Server information
+![Dashboard Screenshot](https://redis.io/images/redis-white.png)
 
-### Key Explorer
+The real-time dashboard provides a comprehensive overview of your Redis instance:
 
-Browse and search through all keys in your Redis database:
-- Search keys by name
-- View key types with color-coded icons
-- Paginated results for better performance
+- **Key Metrics**:
+  - Total number of keys in database
+  - Memory usage with visual indicators
+  - Connected clients count
+  - Server uptime statistics
 
-### Key Details
+- **Quick Access**:
+  - Recent keys with type indicators
+  - One-click navigation to detailed views
 
-View detailed information about a specific key:
-- Key type
-- TTL (Time To Live)
-- Value visualization based on data type
+- **Server Information**:
+  - Redis version and configuration
+  - Operating system details
+  - Process information
 
-### Stats
+### 2. Key Explorer
 
-View detailed Redis server statistics:
-- Memory usage charts
-- Command statistics
-- Detailed server information
+The powerful key management interface allows you to:
 
-## License
+- **Search & Filter**: Quickly find keys using the search functionality
+- **Type Identification**: Visual indicators show key types (string, list, hash, etc.)
+- **Efficient Navigation**: Paginated results for handling large datasets
+- **Sorting Options**: Organize keys by name, type, or size
 
-MIT
+### 3. Key Details & Data Visualization
+
+Comprehensive key inspection with:
+
+- **Metadata Display**:
+  - Key type information
+  - TTL (Time To Live) with expiration countdown
+  - Size and memory usage
+
+- **Type-Specific Visualizations**:
+  - **Strings**: Text display with automatic JSON detection and formatting
+  - **Lists**: Ordered item display with pagination
+  - **Sets**: Member visualization with cardinality information
+  - **Sorted Sets**: Score-based visualization with ranking
+  - **Hashes**: Field-value pair display with interactive exploration
+
+### 4. Performance Monitoring
+
+Detailed Redis server statistics with:
+
+- **Interactive Charts**:
+  - Memory usage trends
+  - Command execution metrics
+  - Hit/miss ratio visualization
+
+- **System Information**:
+  - CPU and memory allocation
+  - Network statistics
+  - Persistence configuration
+
+## 🔄 Integration Options
+
+Redis Visualizer can be integrated with:
+
+- **CI/CD Pipelines**: Automated deployment scripts included
+- **Monitoring Systems**: Prometheus-compatible metrics
+- **Authentication Systems**: Support for Redis ACL and password authentication
+- **Custom Redis Implementations**: Compatible with Redis, Redis Cluster, and Redis Sentinel
+
+## 🛠️ Technology Stack
+
+Redis Visualizer is built with modern, production-ready technologies:
+
+- **Frontend**:
+  - [React](https://reactjs.org/) - Component-based UI library
+  - [Material UI](https://mui.com/) - React component library implementing Google's Material Design
+  - [Chart.js](https://www.chartjs.org/) - Interactive data visualization
+  - [Axios](https://axios-http.com/) - Promise-based HTTP client
+
+- **Backend**:
+  - [Node.js](https://nodejs.org/) - JavaScript runtime
+  - [Express](https://expressjs.com/) - Web application framework
+  - [node-redis](https://github.com/redis/node-redis) - Redis client for Node.js
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how you can help:
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add some amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and development process.
+
+## 📝 Roadmap
+
+Upcoming features and improvements:
+
+- [ ] Redis Cluster support
+- [ ] User authentication and access control
+- [ ] Advanced key filtering and sorting
+- [ ] Export/import functionality
+- [ ] Dark mode theme
+- [ ] Mobile app version
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgements
+
+- [Redis](https://redis.io/) - The open-source, in-memory data store
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [Material UI](https://mui.com/) - React components for faster and easier web development
+- [Node.js](https://nodejs.org/) - JavaScript runtime built on Chrome's V8 JavaScript engine
+
+---
+
+<p align="center">
+  <b>Redis Visualizer</b> - The modern Redis management dashboard<br>
+  <a href="https://github.com/yourusername/redis-visualizer">GitHub</a> •
+  <a href="https://github.com/yourusername/redis-visualizer/issues">Report Bug</a> •
+  <a href="https://github.com/yourusername/redis-visualizer/issues">Request Feature</a>
+</p>
