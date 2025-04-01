@@ -1,0 +1,26 @@
+{
+  "name": "redis-visualizer",
+  "version": "1.0.0",
+  "description": "A beautiful UI for visualizing Redis data",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "client": "cd client && npm start",
+    "server": "nodemon server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install-client": "cd client && npm install --legacy-peer-deps --force",
+    "reinstall-client": "cd client && rm -rf node_modules package-lock.json && npm install --legacy-peer-deps --force",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run install-client && npm run build"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "redis": "^4.0.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "concurrently": "^7.1.0"
+  }
+}
