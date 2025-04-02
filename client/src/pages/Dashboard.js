@@ -17,6 +17,7 @@ import {
 import StorageIcon from '@mui/icons-material/Storage';
 import MemoryIcon from '@mui/icons-material/Memory';
 import SpeedIcon from '@mui/icons-material/Speed';
+import PeopleIcon from '@mui/icons-material/People';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import KeyTypeIcon from '../components/KeyTypeIcon';
 import StatCard from '../components/StatCard';
@@ -96,8 +97,9 @@ const Dashboard = () => {
           <StatCard
             title="Connected Clients"
             value={stats?.Clients?.connected_clients || '1'}
-            icon={<SpeedIcon />}
+            icon={<PeopleIcon />}
             color="#4caf50"
+            onClick={() => navigate('/clients')}
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>

@@ -22,6 +22,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import StorageIcon from '@mui/icons-material/Storage';
 import BarChartIcon from '@mui/icons-material/BarChart';
+import PeopleIcon from '@mui/icons-material/People';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import Brightness4Icon from '@mui/icons-material/Brightness4'; // Icon for dark mode
 import Brightness7Icon from '@mui/icons-material/Brightness7'; // Icon for light mode
@@ -92,6 +93,7 @@ const Layout = ({ children, themeMode, toggleTheme }) => { // Add themeMode and 
     { text: 'Dashboard', icon: <DashboardIcon />, path: '/' },
     { text: 'Key Explorer', icon: <StorageIcon />, path: '/keys' },
     { text: 'Stats', icon: <BarChartIcon />, path: '/stats' },
+    { text: 'Clients', icon: <PeopleIcon />, path: '/clients' },
   ];
 
   return (

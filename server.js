@@ -57,6 +57,58 @@ connectRedis();
 
 // API Routes
 
+// Get all clients
+app.get('/api/clients', async (req, res) => {
+  try {
+    // Execute the CLIENT LIST command
+    const clientList = await redisClient.sendCommand(['CLIENT', 'LIST']);
+
+    // Parse the client list response
+    const clients = clientList.split('\n')
+      .filter(line => line.trim() !== '')
+      .map(line => {
+        const clientInfo = {};
+        line.split(' ').forEach(item => {
+          const [key, value] = item.split('=');
+          if (key && value) {
+            clientInfo[key] = value;
+          }
+        });
+        return clientInfo;
+      });
+
+    res.json(clients);
+  } catch (error) {
+    console.error('Error fetching clients:', error);
+    res.status(500).json({ error: 'Failed to fetch clients', message: error.message });
+  }
+});
+
+// Kill a client
+app.post('/api/clients/kill', async (req, res) => {
+  try {
+    const { addr, id } = req.body;
+
+    if (!addr && !id) {
+      return res.status(400).json({ error: 'Either client address or ID is required' });
+    }
+
+    let result;
+    if (id) {
+      // Kill by ID
+      result = await redisClient.sendCommand(['CLIENT', 'KILL', 'ID', id]);
+    } else {
+      // Kill by address
+      result = await redisClient.sendCommand(['CLIENT', 'KILL', 'ADDR', addr]);
+    }
+
+    res.json({ success: true, result });
+  } catch (error) {
+    console.error('Error killing client:', error);
+    res.status(500).json({ error: 'Failed to kill client', message: error.message });
+  }
+});
+
 // Get all keys
 app.get('/api/keys', async (req, res) => {
   try {

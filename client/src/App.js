@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard';
 import KeyExplorer from './pages/KeyExplorer';
 import KeyDetails from './pages/KeyDetails';
 import Stats from './pages/Stats';
+import Clients from './pages/Clients';
 
 // Define base typography and components to share between themes
 const baseThemeOptions = {
@@ -150,6 +151,7 @@ function App() {
             <Route path="/keys" element={<KeyExplorer />} />
             <Route path="/keys/:key" element={<KeyDetails />} />
             <Route path="/stats" element={<Stats />} />
+            <Route path="/clients" element={<Clients />} />
           </Routes>
         </Layout>
       </Router>

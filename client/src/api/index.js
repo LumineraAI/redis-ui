@@ -10,5 +10,7 @@ const API = axios.create({
 export const fetchKeys = () => API.get('/api/keys');
 export const fetchKeyInfo = (key) => API.get(`/api/keys/${encodeURIComponent(key)}`);
 export const fetchStats = () => API.get('/api/stats');
+export const fetchClients = () => API.get('/api/clients');
+export const killClient = (clientData) => API.post('/api/clients/kill', clientData);
 
 export default API;

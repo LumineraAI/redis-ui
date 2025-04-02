@@ -2,20 +2,21 @@ import React from 'react';
 import { Card, CardContent, Typography, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-const StyledCard = styled(Card)(({ theme }) => ({
+const StyledCard = styled(Card)(({ theme, clickable }) => ({
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
   transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+  cursor: clickable ? 'pointer' : 'default',
   '&:hover': {
     transform: 'translateY(-5px)',
     boxShadow: '0 12px 20px rgba(0,0,0,0.1)',
   },
 }));
 
-const StatCard = ({ title, value, icon, color }) => {
+const StatCard = ({ title, value, icon, color, onClick }) => {
   return (
-    <StyledCard>
+    <StyledCard clickable={!!onClick} onClick={onClick}>
       <CardContent>
         <Box
           sx={{
