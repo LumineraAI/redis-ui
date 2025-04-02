@@ -35,6 +35,17 @@ ChartJS.register(
   Legend
 );
 
+// Helper function to format labels
+const formatLabel = (str) => {
+  if (!str) return '';
+  // Replace underscores with spaces, handle camelCase, and capitalize words
+  const spaced = str.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1');
+  return spaced
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+};
+
 const Stats = () => {
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({});
@@ -182,7 +193,7 @@ const Stats = () => {
       {sections.map((section) => (
         <Accordion key={section} sx={{ mb: 2 }}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography variant="h6">{section}</Typography>
+            <Typography variant="h6">{formatLabel(section)}</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Grid container spacing={2}>
@@ -191,7 +202,7 @@ const Stats = () => {
                   <Card variant="outlined" sx={{ mb: 1 }}>
                     <CardContent sx={{ py: 1, px: 2, '&:last-child': { pb: 1 } }}>
                       <Typography variant="caption" color="text.secondary">
-                        {key}
+                        {formatLabel(key)}
                       </Typography>
                       <Typography variant="body2" sx={{ wordBreak: 'break-all' }}>
                         {value}
