@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; // Remove useEffect
 import { useNavigate, useLocation } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import {
@@ -23,6 +23,8 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import StorageIcon from '@mui/icons-material/Storage';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import Brightness4Icon from '@mui/icons-material/Brightness4'; // Icon for dark mode
+import Brightness7Icon from '@mui/icons-material/Brightness7'; // Icon for light mode
 
 const drawerWidth = 240;
 
@@ -70,12 +72,13 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-const Layout = ({ children }) => {
+const Layout = ({ children, themeMode, toggleTheme }) => { // Add themeMode and toggleTheme props
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [open, setOpen] = useState(!isMobile);
   const navigate = useNavigate();
   const location = useLocation();
+  // Removed useState and useEffect for themeMode - now managed by App.js
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -116,6 +119,10 @@ const Layout = ({ children }) => {
             rel="noopener noreferrer"
           >
             <GitHubIcon />
+          </IconButton>
+          {/* Theme Toggle Button */}
+          <IconButton sx={{ ml: 1 }} onClick={toggleTheme} color="inherit"> {/* Use toggleTheme prop */}
+            {themeMode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
         </Toolbar>
       </AppBarStyled>

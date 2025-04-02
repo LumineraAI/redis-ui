@@ -1,9 +1,54 @@
+:root {
+  --background-color-light: #f5f5f5;
+  --text-color-light: #212121;
+  --primary-color-light: #1976d2; /* Example primary color */
+  --secondary-color-light: #dc004e; /* Example secondary color */
+  --card-bg-light: #ffffff;
+  --border-color-light: #e0e0e0;
+
+  --background-color-dark: #121212;
+  --text-color-dark: #e0e0e0;
+  --primary-color-dark: #90caf9; /* Lighter blue for dark theme */
+  --secondary-color-dark: #f48fb1; /* Lighter pink for dark theme */
+  --card-bg-dark: #1e1e1e;
+  --border-color-dark: #424242;
+}
+
 body {
   margin: 0;
   font-family: 'Roboto', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f5f5f5;
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+body.dark-theme {
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+/* Example usage for components - adjust as needed */
+.card { /* Assuming components use a 'card' class */
+  background-color: var(--card-bg-light);
+  border: 1px solid var(--border-color-light);
+  color: var(--text-color-light);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-theme .card {
+  background-color: var(--card-bg-dark);
+  border: 1px solid var(--border-color-dark);
+  color: var(--text-color-dark);
+}
+
+a {
+  color: var(--primary-color-light);
+}
+
+body.dark-theme a {
+  color: var(--primary-color-dark);
 }
 
 code {
